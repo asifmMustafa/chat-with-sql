@@ -5,11 +5,10 @@ import InputModal from "./components/InputModal";
 
 const App = () => {
   const [employees, setEmployees] = useState([]);
-  const [newEmployee, setNewEmployee] = useState({});
 
   const [error, setError] = useState("");
 
-  const addEmployee = async () => {
+  const addEmployee = async (data) => {
     try {
       const response = await fetch("http://localhost:5001/api/add_record", {
         method: "POST",
@@ -18,7 +17,7 @@ const App = () => {
         },
         body: JSON.stringify({
           table: "employees",
-          new_record: newEmployee,
+          new_record: data,
         }),
       });
 
@@ -28,8 +27,7 @@ const App = () => {
 
       setError("");
 
-      setEmployees([...employees, newEmployee]);
-      setNewEmployee({});
+      setEmployees([...employees, data]);
     } catch (err) {
       setError(err.message);
     }
@@ -54,7 +52,6 @@ const App = () => {
       setError("");
 
       const result = await response.json();
-      console.log(result);
       setEmployees(result);
     } catch (err) {
       setError(err.message);
@@ -67,9 +64,9 @@ const App = () => {
 
   return (
     <>
-      <div className="h-screen flex flex-col justify-center items-center bg-slate-200">
+      <div className="h-screen px-10 flex flex-col justify-center items-center bg-slate-200">
         {error && <p className="text-red-500 mb-5">{error}</p>}
-        <InputModal />
+        <InputModal onSubmit={addEmployee} />
         <Table employees={employees} />
       </div>
     </>

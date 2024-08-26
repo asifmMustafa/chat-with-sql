@@ -33,37 +33,135 @@ const AddIcon = () => (
   </svg>
 );
 
-const InputModal = () => {
+const InputField = ({ id, label, type, value, onChange, placeholder }) => (
+  <div
+    className={
+      id === "position" || id === "name"
+        ? "col-span-2"
+        : "col-span-2 sm:col-span-1"
+    }
+  >
+    <label
+      htmlFor={id}
+      className="block mb-2 text-sm font-medium text-gray-900"
+    >
+      {label}
+    </label>
+    {type === "select" ? (
+      <select
+        id={id}
+        value={value}
+        onChange={onChange}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+        required
+      >
+        <option value="" disabled>
+          {placeholder}
+        </option>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+      </select>
+    ) : (
+      <input
+        type={type}
+        id={id}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        required
+      />
+    )}
+  </div>
+);
+
+const InputModal = ({ onSubmit }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    age: "",
+    sex: "",
+    position: "",
+    salary: "",
+    phone_number: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { name, age, sex, position, salary, phone_number } = formData;
+
+    if (!name || !age || !sex || !position || !salary || !phone_number) {
+      alert("All fields are required!");
+      return;
+    }
+
+    await onSubmit(formData);
+
+    setFormData({
+      name: "",
+      age: "",
+      sex: "",
+      position: "",
+      salary: "",
+      phone_number: "",
+    });
+    setModalVisible(false);
+  };
+
+  const fields = [
+    { id: "name", label: "Name", type: "text", placeholder: "Type name" },
+    { id: "age", label: "Age", type: "number", placeholder: "Enter age" },
+    { id: "sex", label: "Sex", type: "select", placeholder: "Select sex" },
+    {
+      id: "position",
+      label: "Position",
+      type: "text",
+      placeholder: "Enter position",
+    },
+    {
+      id: "salary",
+      label: "Salary",
+      type: "text",
+      placeholder: "Enter salary",
+    },
+    {
+      id: "phone_number",
+      label: "Phone Number",
+      type: "text",
+      placeholder: "Enter phone number",
+    },
+  ];
 
   return (
     <div>
-      {/* Modal toggle */}
       <button
         className="inline-flex text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 mb-10 text-center"
         type="button"
         onClick={() => setModalVisible(!modalVisible)}
       >
         <AddIcon />
-        Add product
+        Add employee
       </button>
 
-      {/* Main modal */}
       {modalVisible && (
         <div className="fixed inset-0 z-50 flex justify-center items-center w-full h-full">
-          {/* Overlay */}
           <div
             className="fixed inset-0 bg-gray-800 opacity-75"
             onClick={() => setModalVisible(false)}
           ></div>
 
-          {/* Modal content */}
           <div className="relative p-4 w-full max-w-md">
             <div className="relative bg-white rounded-lg shadow">
-              {/* Modal header */}
               <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
                 <h3 className="text-lg font-semibold text-gray-900">
-                  Create New Product
+                  Add New Employee
                 </h3>
                 <button
                   type="button"
@@ -75,72 +173,19 @@ const InputModal = () => {
                 </button>
               </div>
 
-              <form className="p-4 md:p-5">
+              <form className="p-4 md:p-5" onSubmit={handleSubmit}>
                 <div className="grid gap-4 mb-4 grid-cols-2">
-                  <div className="col-span-2">
-                    <label
-                      htmlFor="name"
-                      className="block mb-2 text-sm font-medium text-gray-900"
-                    >
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                      placeholder="Type product name"
-                      required=""
+                  {fields.map((field) => (
+                    <InputField
+                      key={field.id}
+                      id={field.id}
+                      label={field.label}
+                      type={field.type}
+                      value={formData[field.id]}
+                      onChange={handleChange}
+                      placeholder={field.placeholder}
                     />
-                  </div>
-                  <div className="col-span-2 sm:col-span-1">
-                    <label
-                      htmlFor="price"
-                      className="block mb-2 text-sm font-medium text-gray-900"
-                    >
-                      Price
-                    </label>
-                    <input
-                      type="number"
-                      name="price"
-                      id="price"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                      placeholder="$2999"
-                      required=""
-                    />
-                  </div>
-                  <div className="col-span-2 sm:col-span-1">
-                    <label
-                      htmlFor="category"
-                      className="block mb-2 text-sm font-medium text-gray-900"
-                    >
-                      Category
-                    </label>
-                    <select
-                      id="category"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                    >
-                      <option selected="">Select category</option>
-                      <option value="TV">TV/Monitors</option>
-                      <option value="PC">PC</option>
-                      <option value="GA">Gaming/Console</option>
-                      <option value="PH">Phones</option>
-                    </select>
-                  </div>
-                  <div className="col-span-2">
-                    <label
-                      htmlFor="description"
-                      className="block mb-2 text-sm font-medium text-gray-900"
-                    >
-                      Product Description
-                    </label>
-                    <textarea
-                      id="description"
-                      rows="4"
-                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="Write product description here"
-                    ></textarea>
-                  </div>
+                  ))}
                 </div>
                 <div className="w-full grid place-content-center">
                   <button
