@@ -1,4 +1,4 @@
-const { add_record } = require("./functions");
+const { add_record, get_records } = require("./functions");
 
 const addRecord = async (req, res) => {
   const { table, new_record } = req.body;
@@ -11,6 +11,18 @@ const addRecord = async (req, res) => {
   }
 };
 
+const getRecords = async (req, res) => {
+  const { table } = req.body;
+  try {
+    const results = await get_records(table);
+    res.json(results);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   addRecord,
+  getRecords,
 };
