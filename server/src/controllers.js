@@ -1,4 +1,4 @@
-const { add_record, get_records } = require("./functions");
+const { add_record, get_records } = require("./db/functions");
 
 const addRecord = async (req, res) => {
   const { table, new_record } = req.body;
