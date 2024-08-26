@@ -12,7 +12,7 @@ const addRecord = async (req, res) => {
 };
 
 const getRecords = async (req, res) => {
-  const { table } = req.body;
+  const { table } = req.query;
   try {
     const results = await get_records(table);
     res.json(results);
