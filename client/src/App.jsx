@@ -13,6 +13,7 @@ const App = () => {
     try {
       const response = await fetch(
         "https://chat-with-sql-server.netlify.app/.netlify/functions/api/add_record",
+        // "http://localhost:9000/.netlify/functions/api/add_record",
         {
           method: "POST",
           headers: {
@@ -41,6 +42,7 @@ const App = () => {
     try {
       const response = await fetch(
         "https://chat-with-sql-server.netlify.app/.netlify/functions/api/get_records?table=employees",
+        // "http://localhost:9000/.netlify/functions/api/get_records?table=employees",
         {
           method: "GET",
           headers: {
