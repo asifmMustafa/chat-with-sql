@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Table from "./components/Table";
 import InputModal from "./components/InputModal";
+import Chat from "./components/Chat";
 
 const App = () => {
   const [employees, setEmployees] = useState([]);
@@ -64,10 +65,11 @@ const App = () => {
 
   return (
     <>
-      <div className="h-screen px-10 flex flex-col justify-center items-center bg-slate-200">
+      <div className="h-screen p-10 flex flex-col justify-center items-center bg-slate-200">
         {error && <p className="text-red-500 mb-5">{error}</p>}
         <InputModal onSubmit={addEmployee} />
         <Table employees={employees} />
+        <Chat />
       </div>
     </>
   );

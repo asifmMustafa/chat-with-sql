@@ -6,7 +6,7 @@ const TableRow = ({ children }) => {
 
 const TableHeaderCell = ({ text }) => {
   return (
-    <th scope="col" class="px-6 py-3">
+    <th scope="col" class="px-6 py-3 text-center">
       {text}
     </th>
   );
@@ -14,7 +14,7 @@ const TableHeaderCell = ({ text }) => {
 
 const TableBodyCell = ({ text, children }) => {
   return (
-    <td class="px-6 py-4">
+    <td class="sm:px-6 sm:py-4 px-3 py-2 text-center">
       {text}
       {children}
     </td>
@@ -32,7 +32,7 @@ const Table = ({ employees }) => {
   ];
 
   return (
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative md:w-[75%] w-full max-h-96 overflow-x-auto overflow-y-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
           <TableRow>
