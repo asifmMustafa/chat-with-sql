@@ -1,3 +1,4 @@
+const { askGemini } = require("./assistant/gemini");
 const { add_record, get_records } = require("./db/functions");
 
 const addRecord = async (req, res) => {
@@ -22,7 +23,20 @@ const getRecords = async (req, res) => {
   }
 };
 
+const assistant = async (req, res) => {
+  const { prompt } = req.query;
+
+  try {
+    const result = await askGemini(prompt);
+    res.json({ response: result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   addRecord,
   getRecords,
+  assistant,
 };

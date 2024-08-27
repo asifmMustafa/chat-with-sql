@@ -32,4 +32,10 @@ const get_records = async (table) => {
   return result.rows;
 };
 
-module.exports = { add_record, get_records };
+const query_db = async (query) => {
+  const result = await client.query(query);
+
+  return { result: result.rows };
+};
+
+module.exports = { add_record, get_records, query_db };
