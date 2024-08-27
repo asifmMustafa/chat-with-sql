@@ -26,8 +26,7 @@ const App = () => {
       );
 
       if (!response.ok) {
-        setError("Failed to add employee");
-        return;
+        throw new Error("Failed to add employee");
       }
 
       setError("");
@@ -51,8 +50,7 @@ const App = () => {
       );
 
       if (!response.ok) {
-        setError("Failed to fetch employees");
-        return;
+        throw new Error("Failed to fetch employees");
       }
 
       setError("");
