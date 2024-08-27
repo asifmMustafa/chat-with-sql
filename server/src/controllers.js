@@ -24,10 +24,10 @@ const getRecords = async (req, res) => {
 };
 
 const assistant = async (req, res) => {
-  const { prompt } = req.query;
+  const { query } = req.query;
 
   try {
-    const result = await askGemini(prompt);
+    const result = await askGemini(query);
     res.json({ response: result });
   } catch (error) {
     console.log(error);
