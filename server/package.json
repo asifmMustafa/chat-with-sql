@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "dev": "npx nodemon src/index.js",
-    "build": "netlify deploy --prod"
+    "start": "./node_modules/.bin/netlify-lambda serve src",
+    "build": "./node_modules/.bin/netlify-lambda build src"
   },
   "dependencies": {
     "@google/generative-ai": "^0.17.1",
@@ -10,6 +10,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "lamba": "^1.0.12",
+    "netlify": "^13.1.21",
+    "netlify-lambda": "^2.0.16",
     "nodemon": "^3.1.4",
     "pg": "^8.12.0",
     "serverless-http": "^3.2.0"
