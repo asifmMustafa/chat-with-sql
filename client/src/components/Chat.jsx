@@ -10,7 +10,7 @@ const Chat = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5001/api/assistant?query=${query}`,
+        `https://chat-with-sql-server.netlify.app/.netlify/functions/api/assistant?query=${query}`,
         {
           method: "GET",
           headers: {

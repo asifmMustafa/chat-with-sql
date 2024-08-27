@@ -11,16 +11,19 @@ const App = () => {
 
   const addEmployee = async (data) => {
     try {
-      const response = await fetch("http://localhost:5001/api/add_record", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          table: "employees",
-          new_record: data,
-        }),
-      });
+      const response = await fetch(
+        "https://chat-with-sql-server.netlify.app/.netlify/functions/api/add_record",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            table: "employees",
+            new_record: data,
+          }),
+        }
+      );
 
       if (!response.ok) {
         setError("Failed to add employee");
@@ -38,7 +41,7 @@ const App = () => {
   const getEmployees = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5001/api/get_records?table=employees",
+        "https://chat-with-sql-server.netlify.app/.netlify/functions/api/get_records?table=employees",
         {
           method: "GET",
           headers: {
