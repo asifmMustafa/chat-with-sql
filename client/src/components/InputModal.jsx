@@ -43,7 +43,7 @@ const InputField = ({ id, label, type, value, onChange, placeholder }) => (
   >
     <label
       htmlFor={id}
-      className="block mb-2 text-sm font-medium text-gray-900"
+      className="block mb-2 sm:text-sm text-xs font-medium text-gray-900"
     >
       {label}
     </label>
@@ -52,7 +52,7 @@ const InputField = ({ id, label, type, value, onChange, placeholder }) => (
         id={id}
         value={value}
         onChange={onChange}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm text-xs rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
         required
       >
         <option value="" disabled>
@@ -65,7 +65,7 @@ const InputField = ({ id, label, type, value, onChange, placeholder }) => (
       <input
         type={type}
         id={id}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm text-xs rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
         placeholder={placeholder}
         value={value}
         onChange={onChange}
@@ -142,7 +142,7 @@ const InputModal = ({ onSubmit }) => {
   return (
     <div>
       <button
-        className="inline-flex text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 mb-10 text-center"
+        className="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-lg sm:text-sm text-xs px-5 py-2.5 sm:mb-10 mb-5 text-center"
         type="button"
         onClick={() => setModalVisible(!modalVisible)}
       >
@@ -160,12 +160,12 @@ const InputModal = ({ onSubmit }) => {
           <div className="relative p-4 w-full max-w-md">
             <div className="relative bg-white rounded-lg shadow">
               <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="sm:text-lg text-sm font-semibold text-gray-900">
                   Add New Employee
                 </h3>
                 <button
                   type="button"
-                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg sm:text-sm text-xs w-8 h-8 ms-auto inline-flex justify-center items-center"
                   onClick={() => setModalVisible(!modalVisible)}
                 >
                   <CloseIcon />
@@ -190,7 +190,7 @@ const InputModal = ({ onSubmit }) => {
                 <div className="w-full grid place-content-center">
                   <button
                     type="submit"
-                    className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                    className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-lg sm:text-sm text-xs px-5 py-2.5 text-center"
                   >
                     Add
                   </button>

@@ -1,12 +1,12 @@
 import React from "react";
 
 const TableRow = ({ children }) => {
-  return <tr class="odd:bg-white even:bg-gray-50 border-b">{children}</tr>;
+  return <tr className="odd:bg-white even:bg-gray-50 border-b">{children}</tr>;
 };
 
 const TableHeaderCell = ({ text }) => {
   return (
-    <th scope="col" class="px-6 py-3 text-center">
+    <th scope="col" className="px-6 py-3 text-center">
       {text}
     </th>
   );
@@ -14,7 +14,7 @@ const TableHeaderCell = ({ text }) => {
 
 const TableBodyCell = ({ text, children }) => {
   return (
-    <td class="sm:px-6 sm:py-4 px-3 py-2 text-center">
+    <td className="sm:px-6 sm:py-4 px-3 py-2 text-center">
       {text}
       {children}
     </td>
@@ -32,9 +32,9 @@ const Table = ({ employees }) => {
   ];
 
   return (
-    <div class="relative md:w-[75%] w-full max-h-96 overflow-x-auto overflow-y-auto shadow-md sm:rounded-lg">
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+    <div className="relative md:w-[75%] w-full max-h-96 overflow-x-auto overflow-y-auto shadow-md sm:rounded-lg">
+      <table className="w-full sm:text-sm text-xs text-left rtl:text-right text-gray-500">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50">
           <TableRow>
             {headers.map((header, i) => (
               <TableHeaderCell key={i} text={header} />
