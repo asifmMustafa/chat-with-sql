@@ -12,8 +12,7 @@ const App = () => {
   const addEmployee = async (data) => {
     try {
       const response = await fetch(
-        "https://chat-with-sql-server.netlify.app/.netlify/functions/api/add_record",
-        // "http://localhost:9000/.netlify/functions/api/add_record",
+        `${import.meta.env.VITE_SEVER_URL}/.netlify/functions/api/add_record`,
         {
           method: "POST",
           headers: {
@@ -41,8 +40,9 @@ const App = () => {
   const getEmployees = async () => {
     try {
       const response = await fetch(
-        "https://chat-with-sql-server.netlify.app/.netlify/functions/api/get_records?table=employees",
-        // "http://localhost:9000/.netlify/functions/api/get_records?table=employees",
+        `${
+          import.meta.env.VITE_SEVER_URL
+        }/.netlify/functions/api/get_records?table=employees`,
         {
           method: "GET",
           headers: {

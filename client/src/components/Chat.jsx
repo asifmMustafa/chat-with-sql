@@ -33,8 +33,9 @@ const Chat = () => {
       setLoading(true);
 
       const response = await fetch(
-        `https://chat-with-sql-server.netlify.app/.netlify/functions/api/assistant?query=${query}`,
-        // `http://localhost:9000/.netlify/functions/api/assistant?query=${query}`,
+        `${
+          import.meta.env.VITE_SEVER_URL
+        }/.netlify/functions/api/assistant?query=${query}`,
         {
           method: "GET",
           headers: {
