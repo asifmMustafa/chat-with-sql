@@ -30,6 +30,19 @@ npm install --prefix client && \
 npm install --prefix server
 ```
 
+Create an employees table in your postgres database
+```sql
+CREATE TABLE employees (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL,
+    sex CHAR(1) NOT NULL,
+    position VARCHAR(100) NOT NULL,
+    salary DECIMAL(10, 2) NOT NULL,
+    phone_number VARCHAR(15) NOT NULL
+);
+```
+
 Create .env in the server folder and add DATABASE_URL and GEMINI_API_KEY
 
 Create .env in client folder
