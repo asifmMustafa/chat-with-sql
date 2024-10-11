@@ -15,7 +15,7 @@ Live demo: https://chat-with-sql.netlify.app
 
 Tech stack:
 
-- Frontend: React app create with Vite, Tailwind CSS
+- Frontend: React app created with Vite, Tailwind CSS
 - Backend: Express server, Google Gemini LLM
 - Database: PostgreSQL (CockroachDB Cloud)
 
